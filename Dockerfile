@@ -1,4 +1,4 @@
-FROM openjdk:8-slim-buster as builder
+FROM docker.io/openjdk:8u342-slim-buster as builder
 
 WORKDIR /app
 COPY .mvn/ .mvn/
@@ -8,7 +8,7 @@ COPY src/ src/
 RUN chmod +x mvnw \
     && ./mvnw clean package -DskipTests --batch-mode
 
-FROM openjdk:8u222-jre-slim-buster
+FROM docker.io/openjdk:8u342-jre-slim-buster
 
 COPY --from=builder /app/target/ejemplo-java-1.0.0-SNAPSHOT-runner.jar app.jar
 EXPOSE 8080
