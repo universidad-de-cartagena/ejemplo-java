@@ -14,16 +14,10 @@ processors:
 exporters:
   logging:
     verbosity: normal
-  jaeger:
-    endpoint: jaeger:14250
-    tls:
-      insecure: true
-  zipkin:
-    endpoint: http://zipkin:9411/api/v2/spans
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [logging, jaeger, zipkin]
+      exporters: [logging]

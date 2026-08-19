@@ -44,7 +44,7 @@ build:
 
 test:
   stage: test
-  image: eclipse-temurin:21-jdk
+  image: eclipse-temurin:8-jdk
   script:
     - ./mvnw test -DskipTests=false --batch-mode
   artifacts:
@@ -65,7 +65,7 @@ deploy-staging:
     name: staging
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  when: manual
+      when: manual
 
 deploy-production:
   stage: deploy
