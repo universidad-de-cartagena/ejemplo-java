@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ejemplo-java-config
+  labels:
+    app: ejemplo-java
+data:
+  WAIT_HOSTS: "database:3306"
+  JAVA_OPTS: "-Xmx256m -Xms256m"

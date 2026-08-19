@@ -1,0 +1,8 @@
+apiVersion: v2
+name: ejemplo-java
+description: Helm chart for ejemplo-java Quarkus application
+type: application
+version: 0.1.0
+appVersion: "21"
+maintainers:
+  - name: amauryortega
