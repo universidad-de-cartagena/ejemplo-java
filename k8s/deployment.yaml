@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ejemplo-java
+  labels:
+    app: ejemplo-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ejemplo-java
+  template:
+    metadata:
+      labels:
+        app: ejemplo-java
+    spec:
+      containers:
+        - name: ejemplo-java
+          image: registry.gitlab.com/amauryortega/ejemplo-java:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: ejemplo-java-config
+          livenessProbe:
+            httpGet:
+              path: /q/health/live
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 256Mi

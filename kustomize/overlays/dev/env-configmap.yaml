@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ejemplo-java-env
+data:
+  ENVIRONMENT: "dev"
+  DEBUG: "true"
+  LOG_LEVEL: "debug"
+  JAVA_OPTS: "-Xmx128m -Xms128m"
+  WAIT_HOSTS: "database:3306"
